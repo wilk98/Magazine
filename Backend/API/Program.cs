@@ -1,3 +1,4 @@
+using Application.DTOs;
 using Application.Interfaces.Services;
 using Application.Services;
 using Infrastructure.Data;
@@ -19,6 +20,8 @@ builder.Services.AddScoped<ITowarService, TowarService>();
 builder.Services.AddScoped<IEtykietaService, EtykietaService>();
 builder.Services.AddScoped<IDokumentPrzyjeciaService, DokumentPrzyjeciaService>();
 builder.Services.AddScoped<IPozycjaTowaruService, PozycjaTowaruService>();
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
