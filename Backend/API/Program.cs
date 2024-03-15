@@ -1,3 +1,5 @@
+using Application.Interfaces.Services;
+using Application.Services;
 using Infrastructure.Data;
 using Infrastructure.Interfaces;
 using Infrastructure.Repositories;
@@ -11,6 +13,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Add services to the container.
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+builder.Services.AddScoped<IMagazynService, MagazynService>();
+builder.Services.AddScoped<IDostawcaService, DostawcaService>();
+builder.Services.AddScoped<ITowarService, TowarService>();
+builder.Services.AddScoped<IEtykietaService, EtykietaService>();
+builder.Services.AddScoped<IDokumentPrzyjeciaService, DokumentPrzyjeciaService>();
+builder.Services.AddScoped<IPozycjaTowaruService, PozycjaTowaruService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
