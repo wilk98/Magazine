@@ -1,4 +1,6 @@
-﻿namespace Application.DTOs;
+﻿using Application.DTOs.PozycjaTowaru;
+
+namespace Application.DTOs.DokumentPrzyjecia;
 
 public class DokumentPrzyjeciaCreateDto
 {
