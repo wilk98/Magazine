@@ -1,41 +1,41 @@
-﻿using Application.Interfaces.Services;
+﻿using Application.DTOs.DokumentPrzyjecia;
+using Application.Interfaces.Repositories;
+using Application.Interfaces.Services;
+using AutoMapper;
 using Core;
-using Infrastructure.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Application.Services;
 
 public class DokumentPrzyjeciaService : IDokumentPrzyjeciaService
 {
-    private readonly IGenericRepository<DokumentPrzyjecia> _dokumentPrzyjeciaRepository;
+    private readonly IDokumentPrzyjeciaRepository _dokumentPrzyjeciaRepository;
+    private readonly IMapper _mapper;
 
-    public DokumentPrzyjeciaService(IGenericRepository<DokumentPrzyjecia> dokumentPrzyjeciaRepository)
+    public DokumentPrzyjeciaService(IDokumentPrzyjeciaRepository dokumentPrzyjeciaRepository, IMapper mapper)
     {
         _dokumentPrzyjeciaRepository = dokumentPrzyjeciaRepository;
+        _mapper = mapper;
     }
 
-    public async Task<IEnumerable<DokumentPrzyjecia>> GetAllAsync()
+    public async Task<DokumentPrzyjeciaDto> AddAsync(DokumentPrzyjeciaCreateDto dokumentCreateDto)
     {
-        return await _dokumentPrzyjeciaRepository.GetAllAsync();
+        var dokumentPrzyjecia = _mapper.Map<DokumentPrzyjecia>(dokumentCreateDto);
+        dokumentPrzyjecia = await _dokumentPrzyjeciaRepository.AddAsync(dokumentPrzyjecia, (List<int>)dokumentCreateDto.EtykietyIds);
+        return _mapper.Map<DokumentPrzyjeciaDto>(dokumentPrzyjecia);
     }
 
-    public async Task<DokumentPrzyjecia> GetByIdAsync(int id)
+    public async Task<IEnumerable<DokumentPrzyjeciaDto>> GetAllAsync()
     {
-        return await _dokumentPrzyjeciaRepository.GetByIdAsync(id);
+        var dokumenty = await _dokumentPrzyjeciaRepository.GetAllAsync();
+        return _mapper.Map<IEnumerable<DokumentPrzyjeciaDto>>(dokumenty);
     }
 
-    public async Task<DokumentPrzyjecia> AddAsync(DokumentPrzyjecia dokumentPrzyjecia)
+    public async Task<DokumentPrzyjeciaDto> GetByIdAsync(int id)
     {
-        return await _dokumentPrzyjeciaRepository.AddAsync(dokumentPrzyjecia);
+        var dokument = await _dokumentPrzyjeciaRepository.GetByIdAsync(id);
+        return _mapper.Map<DokumentPrzyjeciaDto>(dokument);
     }
 
-    public async Task UpdateAsync(DokumentPrzyjecia dokumentPrzyjecia)
-    {
-        await _dokumentPrzyjeciaRepository.UpdateAsync(dokumentPrzyjecia);
-    }
-
-    public async Task DeleteAsync(int id)
-    {
-        var dokumentPrzyjecia = await GetByIdAsync(id);
-        await _dokumentPrzyjeciaRepository.DeleteAsync(dokumentPrzyjecia);
-    }
 }
