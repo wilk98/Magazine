@@ -1,41 +1,52 @@
-﻿using Application.Interfaces.Services;
+﻿using Application.DTOs.Magazyn;
+using Application.Interfaces.Services;
+using AutoMapper;
 using Core;
 using Infrastructure.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Application.Services;
 
 public class MagazynService : IMagazynService
 {
     private readonly IGenericRepository<Magazyn> _magazynRepository;
+    private readonly IMapper _mapper;
 
-    public MagazynService(IGenericRepository<Magazyn> magazynRepository)
+    public MagazynService(IGenericRepository<Magazyn> magazynRepository, IMapper mapper)
     {
         _magazynRepository = magazynRepository;
+        _mapper = mapper;
     }
 
-    public async Task<IEnumerable<Magazyn>> GetAllAsync()
+    public async Task<IEnumerable<MagazynDto>> GetAllAsync()
     {
-        return await _magazynRepository.GetAllAsync();
+        var magazyny = await _magazynRepository.GetAllAsync();
+        return _mapper.Map<IEnumerable<MagazynDto>>(magazyny);
     }
 
-    public async Task<Magazyn> GetByIdAsync(int id)
+    public async Task<MagazynDto> GetByIdAsync(int id)
     {
-        return await _magazynRepository.GetByIdAsync(id);
+        var magazyn = await _magazynRepository.GetByIdAsync(id);
+        return _mapper.Map<MagazynDto>(magazyn);
     }
 
-    public async Task<Magazyn> AddAsync(Magazyn magazyn)
+    public async Task<MagazynDto> AddAsync(MagazynCreateDto magazynCreateDto)
     {
-        return await _magazynRepository.AddAsync(magazyn);
+        var magazyn = _mapper.Map<Magazyn>(magazynCreateDto);
+        magazyn = await _magazynRepository.AddAsync(magazyn);
+        return _mapper.Map<MagazynDto>(magazyn);
     }
 
-    public async Task UpdateAsync(Magazyn magazyn)
+    public async Task UpdateAsync(MagazynDto magazynUpdateDto)
     {
+        var magazyn = _mapper.Map<Magazyn>(magazynUpdateDto);
         await _magazynRepository.UpdateAsync(magazyn);
     }
 
     public async Task DeleteAsync(int id)
     {
-        var magazyn = await GetByIdAsync(id);
+        var magazyn = await _magazynRepository.GetByIdAsync(id);
         await _magazynRepository.DeleteAsync(magazyn);
     }
 }
