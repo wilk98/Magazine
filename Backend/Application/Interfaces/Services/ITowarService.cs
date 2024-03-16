@@ -1,12 +1,13 @@
-﻿using Core;
+﻿using Application.DTOs.Towar;
+using Core;
 
 namespace Application.Interfaces.Services;
 
 public interface ITowarService
 {
-    Task<IEnumerable<Towar>> GetAllAsync();
-    Task<Towar> GetByIdAsync(int id);
-    Task<Towar> AddAsync(Towar towar);
-    Task UpdateAsync(Towar towar);
+    Task<IEnumerable<TowarDto>> GetAllAsync();
+    Task<TowarDto> GetByIdAsync(int id);
+    Task<TowarDto> AddAsync(TowarCreateDto towar);
+    Task UpdateAsync(TowarDto towar);
     Task DeleteAsync(int id);
 }
