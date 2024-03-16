@@ -1,4 +1,5 @@
-using Application.DTOs;
+using Application;
+using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Application.Services;
 using Infrastructure.Data;
@@ -13,6 +14,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<IDokumentPrzyjeciaRepository, DokumentPrzyjeciaRepository>();
 
 builder.Services.AddScoped<IMagazynService, MagazynService>();
 builder.Services.AddScoped<IDostawcaService, DostawcaService>();
