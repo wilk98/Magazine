@@ -2,6 +2,11 @@
 
 public class DokumentPrzyjecia
 {
+    public DokumentPrzyjecia()
+    {
+        Etykiety = new HashSet<Etykieta>();
+    }
+
     public int DokumentPrzyjeciaId { get; set; }
     public DateTime DataPrzyjecia { get; set; }
 
@@ -17,4 +22,3 @@ public class DokumentPrzyjecia
     // Relacja jeden do wielu z Towar
     public ICollection<PozycjaTowaru> PozycjeTowaru { get; set; }
 }
-
