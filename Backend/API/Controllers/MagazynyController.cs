@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-[Route("api/[controller]")]
+[Route("api/magazyny")]
 [ApiController]
 public class MagazynyController : ControllerBase
 {
