@@ -39,6 +39,9 @@ namespace Infrastructure.Migrations
                     b.Property<int>("MagazynId")
                         .HasColumnType("int");
 
+                    b.Property<bool?>("StatusZatwierdzenia")
+                        .HasColumnType("bit");
+
                     b.HasKey("DokumentPrzyjeciaId");
 
                     b.HasIndex("DostawcaId");

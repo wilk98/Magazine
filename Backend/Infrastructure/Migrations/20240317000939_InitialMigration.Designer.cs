@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240314125033_InitialMigration")]
+    [Migration("20240317000939_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -41,6 +41,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<int>("MagazynId")
                         .HasColumnType("int");
+
+                    b.Property<bool?>("StatusZatwierdzenia")
+                        .HasColumnType("bit");
 
                     b.HasKey("DokumentPrzyjeciaId");
 

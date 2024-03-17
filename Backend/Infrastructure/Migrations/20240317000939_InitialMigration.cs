@@ -74,7 +74,8 @@ namespace Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DataPrzyjecia = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MagazynId = table.Column<int>(type: "int", nullable: false),
-                    DostawcaId = table.Column<int>(type: "int", nullable: false)
+                    DostawcaId = table.Column<int>(type: "int", nullable: false),
+                    StatusZatwierdzenia = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
