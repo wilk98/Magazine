@@ -37,5 +37,17 @@ public class DokumentPrzyjeciaService : IDokumentPrzyjeciaService
         var dokument = await _dokumentPrzyjeciaRepository.GetByIdAsync(id);
         return _mapper.Map<DokumentPrzyjeciaDto>(dokument);
     }
+    public async Task ZatwierdzDokumentPrzyjeciaAsync(int dokumentPrzyjeciaId)
+    {
+        await _dokumentPrzyjeciaRepository.ZatwierdzDokumentPrzyjeciaAsync(dokumentPrzyjeciaId);
+    }
 
+    public async Task AnulujDokumentPrzyjeciaAsync(int dokumentPrzyjeciaId)
+    {
+        await _dokumentPrzyjeciaRepository.AnulujDokumentPrzyjeciaAsync(dokumentPrzyjeciaId);
+    }
+    public async Task UpdateAsync(DokumentPrzyjeciaUpdateDto dokumentUpdateDto)
+    {
+        await _dokumentPrzyjeciaRepository.UpdateAsync(dokumentUpdateDto);
+    }
 }
