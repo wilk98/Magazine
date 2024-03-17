@@ -5,6 +5,8 @@ public class DokumentPrzyjecia
     public DokumentPrzyjecia()
     {
         Etykiety = new HashSet<Etykieta>();
+        StatusZatwierdzenia = null;
+        PozycjeTowaru = new List<PozycjaTowaru>();
     }
 
     public int DokumentPrzyjeciaId { get; set; }
@@ -21,4 +23,5 @@ public class DokumentPrzyjecia
 
     // Relacja jeden do wielu z Towar
     public ICollection<PozycjaTowaru> PozycjeTowaru { get; set; }
+    public bool? StatusZatwierdzenia { get; set; }
 }
