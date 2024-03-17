@@ -15,4 +15,5 @@ public class DokumentPrzyjeciaDto
     public DostawcaDto Dostawca { get; set; }
     public List<PozycjaTowaruDto> PozycjeTowaru { get; set; }
     public List<EtykietaDto> Etykiety { get; set; }
+    public bool? StatusZatwierdzenia { get; set; }
 }
