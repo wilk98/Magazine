@@ -35,4 +35,36 @@ public class DokumentyPrzyjeciaController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = createdDokumentDto.DokumentPrzyjeciaId }, createdDokumentDto);
     }
 
+    [HttpPost("{id}/zatwierdz")]
+    public async Task<IActionResult> Zatwierdz(int id)
+    {
+        await _dokumentPrzyjeciaService.ZatwierdzDokumentPrzyjeciaAsync(id);
+        return NoContent();
+    }
+
+    [HttpPost("{id}/anuluj")]
+    public async Task<IActionResult> Anuluj(int id)
+    {
+        await _dokumentPrzyjeciaService.AnulujDokumentPrzyjeciaAsync(id);
+        return NoContent();
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(int id, [FromBody] DokumentPrzyjeciaUpdateDto dokumentUpdateDto)
+    {
+        if (id != dokumentUpdateDto.DokumentPrzyjeciaId)
+        {
+            return BadRequest("ID dokumentu nie zgadza się.");
+        }
+
+        try
+        {
+            await _dokumentPrzyjeciaService.UpdateAsync(dokumentUpdateDto);
+            return NoContent();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }
