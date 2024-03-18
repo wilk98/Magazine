@@ -112,6 +112,7 @@ public class DokumentPrzyjeciaRepository : IDokumentPrzyjeciaRepository
             {
                 pozycja.Ilosc = pozycjaDto.Ilosc;
                 pozycja.Cena = pozycjaDto.Cena;
+                pozycja.TowarId = pozycjaDto.TowarId;
             }
             else
             {
