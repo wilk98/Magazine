@@ -1,6 +1,21 @@
-<div *ngFor="let etykieta of etykiety" class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">{{ etykieta.nazwa }}</h5>
+<div class="container">
+    <h2>Lista Etykiet</h2>
+    <div *ngFor="let etykieta of etykiety" class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ etykieta.nazwa }}</h5>
+            <button class="btn btn-secondary" (click)="openEditEtykieta(etykieta)">Edytuj</button>
+            <button class="btn btn-danger" (click)="deleteEtykieta(etykieta.etykietaId)">Usuń</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 mb-2">
+            <button class="btn btn-primary" (click)="showAddEtykieta()">Dodaj Etykietę</button>
+        </div>
+    </div>
+    <div *ngIf="showAddEditForm" class="row mb-3">
+        <div class="col">
+            <input [(ngModel)]="currentEditEtykieta.nazwa" placeholder="Nazwa" class="form-control">
+            <button class="btn btn-success" (click)="saveEtykieta()">Zapisz</button>
+        </div>
     </div>
 </div>
-  
