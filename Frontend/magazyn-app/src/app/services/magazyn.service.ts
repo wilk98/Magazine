@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Magazyn } from '../models/magazyn.model';
 import { AppConfig } from '../config/app.config';
 
-
 @Injectable({
   providedIn: 'root'
 })

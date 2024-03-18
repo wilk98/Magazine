@@ -47,7 +47,6 @@ export class MagazynyComponent implements OnInit {
   }
 
   deleteMagazyn(id: number): void {
-    console
     this.magazynService.deleteMagazyn(id).subscribe(() => {
       this.loadMagazyny();
     });

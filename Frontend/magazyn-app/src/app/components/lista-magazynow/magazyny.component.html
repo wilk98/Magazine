@@ -1,4 +1,13 @@
 <div class="container">
+    <h2>Lista Magazynów</h2>
+    <div *ngFor="let magazyn of magazyny" class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ magazyn.nazwa }}</h5>
+        <p class="card-text">{{ magazyn.symbol }}</p>
+        <button class="btn btn-secondary" (click)="openEditMagazyn(magazyn)">Edytuj</button>
+        <button class="btn btn-danger" (click)="deleteMagazyn(magazyn.magazynId)">Usuń</button>
+      </div>
+    </div>
     <div class="row">
       <div class="col-12 mb-2">
         <button class="btn btn-primary" (click)="showAddMagazyn()">Dodaj Magazyn</button>
@@ -9,18 +18,6 @@
         <input [(ngModel)]="currentEditMagazyn.nazwa" placeholder="Nazwa" class="form-control">
         <input [(ngModel)]="currentEditMagazyn.symbol" placeholder="Symbol" class="form-control">
         <button class="btn btn-success" (click)="saveMagazyn()">Zapisz</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12" *ngFor="let magazyn of magazyny">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{{ magazyn.nazwa }}</h5>
-            <p class="card-text">{{ magazyn.symbol }}</p>
-            <button class="btn btn-secondary" (click)="openEditMagazyn(magazyn)">Edytuj</button>
-            <button class="btn btn-danger" (click)="deleteMagazyn(magazyn.magazynId)">Usuń</button>
-          </div>
-        </div>
       </div>
     </div>
 </div>
