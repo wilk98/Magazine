@@ -1,7 +1,23 @@
-<div *ngFor="let dostawca of dostawcy" class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">{{ dostawca.nazwaFirmy }}</h5>
-      <p class="card-text">Szczegóły dostawcy: {{ dostawca.adres }}.</p>
+<div class="container">
+    <h2>Lista Dostawców</h2>
+    <div *ngFor="let dostawca of dostawcy" class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ dostawca.nazwaFirmy }}</h5>
+            <p class="card-text">Adres dostawcy: {{ dostawca.adres }}.</p>
+            <button class="btn btn-secondary" (click)="openEditDostawca(dostawca)">Edytuj</button>
+            <button class="btn btn-danger" (click)="deleteDostawca(dostawca.dostawcaId)">Usuń</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 mb-2">
+            <button class="btn btn-primary" (click)="showAddDostawca()">Dodaj Dostawcę</button>
+        </div>
+    </div>
+    <div *ngIf="showAddEditForm" class="row mb-3">
+        <div class="col">
+            <input [(ngModel)]="currentEditDostawca.nazwaFirmy" placeholder="Nazwa firmy" class="form-control">
+            <input [(ngModel)]="currentEditDostawca.adres" placeholder="Adres" class="form-control">
+            <button class="btn btn-success" (click)="saveDostawca()">Zapisz</button>
+        </div>
     </div>
 </div>
-  
