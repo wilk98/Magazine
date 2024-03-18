@@ -15,4 +15,16 @@ export class TowarService {
   getTowary(): Observable<Towar[]> {
     return this.http.get<Towar[]>(this.apiUrl);
   }
+
+  addTowar(towar: Towar): Observable<Towar> {
+    return this.http.post<Towar>(this.apiUrl, towar);
+  }
+
+  editTowar(towar: Towar): Observable<Towar> {
+    return this.http.put<Towar>(`${this.apiUrl}/${towar.towarId}`, towar);
+  }
+
+  deleteTowar(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
 }
