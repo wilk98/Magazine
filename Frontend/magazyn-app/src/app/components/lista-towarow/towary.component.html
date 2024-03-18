@@ -1,0 +1,10 @@
+<div class="container">
+    <h2>Lista Towarów</h2>
+    <div *ngFor="let towar of towary" class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ towar.nazwa }}</h5>
+        <p class="card-text">Kod: {{ towar.kod }}</p>
+      </div>
+    </div>
+</div>
+  
