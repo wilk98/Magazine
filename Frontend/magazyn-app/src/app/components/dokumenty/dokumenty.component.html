@@ -1,0 +1,64 @@
+<div class="container">
+    <button class="btn btn-primary mb-3" (click)="showAddDokumentForm()">Dodaj Nowy Dokument</button>
+  
+    <div *ngIf="showAddEditForm">
+      <h2>{{currentDokument.dokumentPrzyjeciaId ? 'Edytuj' : 'Dodaj'}} Dokument</h2>
+      <form>
+        <div class="form-group">
+          <label for="magazynSelect">Magazyn</label>
+          <select id="magazynSelect" class="form-control" [(ngModel)]="currentDokument.magazynId" name="magazyn">
+            <option *ngFor="let magazyn of magazyny" [value]="magazyn.magazynId">{{magazyn.nazwa}}</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="dostawcaSelect">Dostawca</label>
+          <select id="dostawcaSelect" class="form-control" [(ngModel)]="currentDokument.dostawcaId" name="dostawca">
+            <option *ngFor="let dostawca of dostawcy" [value]="dostawca.dostawcaId">{{dostawca.nazwaFirmy}}</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+            <label>Etykiety</label>
+            <div *ngFor="let etykieta of etykiety">
+                <input type="checkbox" [(ngModel)]="etykieta.selected" (change)="updateSelectedEtykiety(etykieta)">
+                {{etykieta.nazwa}}
+            </div>
+          </div>
+          
+        <div *ngFor="let pozycja of currentDokument.pozycjeTowaru; let i = index">
+          <div class="card my-2">
+            <div class="card-body">
+              <h5 class="card-title">Pozycja Towaru #{{ i + 1 }}</h5>
+              <select class="form-control mb-2" [(ngModel)]="pozycja.towarId" name="towar-{{i}}">
+                <option *ngFor="let towar of towaryList" [value]="towar.towarId">{{ towar.nazwa }}</option>
+              </select>
+              <input type="number" class="form-control mb-2" [(ngModel)]="pozycja.ilosc" name="ilosc-{{i}}" placeholder="Ilość">
+              <input type="number" class="form-control mb-2" [(ngModel)]="pozycja.cena" name="cena-{{i}}" placeholder="Cena">
+              <button type="button" class="btn btn-danger" (click)="removePozycjaTowaru(i, pozycja.pozycjaTowaruId)">Usuń pozycję</button>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="addPozycjaTowaru()">Dodaj Pozycję Towaru</button>
+  
+        <button type="button" class="btn btn-success mt-3" (click)="saveDokument()">Zapisz Dokument</button>
+      </form>
+    </div>
+  
+    <div *ngFor="let dokument of dokumenty" class="card my-3">
+        <div class="card-body">
+          <h5 class="card-title">Dokument #{{ dokument.dokumentPrzyjeciaId }}</h5>
+          <p>Data przyjęcia: {{ dokument.dataPrzyjecia | date }}</p>
+          <p>Magazyn: {{ dokument.magazyn?.nazwa }}</p>
+          <p>Dostawca: {{ dokument.dostawca?.nazwaFirmy }}</p>
+          <p>Etykiety: <span *ngFor="let etykieta of dokument.etykiety">{{ etykieta.nazwa }} </span></p>
+          <div *ngFor="let pozycja of dokument.pozycjeTowaru">
+            <p>Pozycja Towaru: {{ pozycja.towar?.nazwa }} - Ilość: {{ pozycja.ilosc }}, Cena: {{ pozycja.cena }}</p>
+          </div>
+          <button *ngIf="dokument.statusZatwierdzenia === null" class="btn btn-success" (click)="zatwierdzDokument(dokument.dokumentPrzyjeciaId)">Zatwierdź</button>
+          <button *ngIf="dokument.statusZatwierdzenia === null" class="btn btn-warning" (click)="anulujDokument(dokument.dokumentPrzyjeciaId)">Anuluj</button>
+          <button *ngIf="dokument.statusZatwierdzenia === null" class="btn btn-info" (click)="editDokument(dokument)">Edytuj</button>
+        </div>
+      </div>
+  </div>
+  
