@@ -1,5 +1,5 @@
 export interface Dostawca {
-    id: number;
+    dostawcaId: number;
     nazwaFirmy: string;
     adres: string;
   }

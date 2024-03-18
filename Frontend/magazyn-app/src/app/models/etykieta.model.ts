@@ -1,4 +1,4 @@
 export interface Etykieta {
-    id: number;
+    etykietaId: number;
     nazwa: string;
   }

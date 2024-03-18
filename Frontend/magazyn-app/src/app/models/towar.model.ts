@@ -1,5 +1,5 @@
 export interface Towar {
-    id: number;
+    towarId: number;
     nazwa: string;
     kod: string;
   }
