@@ -15,4 +15,16 @@ export class DostawcaService {
   getDostawcy(): Observable<Dostawca[]> {
     return this.http.get<Dostawca[]>(this.apiUrl);
   }
+
+  addDostawca(dostawca: Dostawca): Observable<Dostawca> {
+    return this.http.post<Dostawca>(this.apiUrl, dostawca);
+  }
+
+  editDostawca(dostawca: Dostawca): Observable<Dostawca> {
+    return this.http.put<Dostawca>(`${this.apiUrl}/${dostawca.dostawcaId}`, dostawca);
+  }
+
+  deleteDostawca(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
 }
