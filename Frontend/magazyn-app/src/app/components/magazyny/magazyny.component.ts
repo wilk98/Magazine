@@ -37,6 +37,7 @@ export class MagazynyComponent implements OnInit {
     if (this.currentEditMagazyn.magazynId) {
       this.magazynService.editMagazyn(this.currentEditMagazyn).subscribe(() => {
         this.loadMagazyny();
+        
       });
     } else {
       this.magazynService.addMagazyn(this.currentEditMagazyn).subscribe(() => {
