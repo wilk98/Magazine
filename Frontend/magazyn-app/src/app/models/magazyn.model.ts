@@ -1,5 +1,5 @@
 export interface Magazyn {
-    id: number;
+    magazynId: number;
     nazwa: string;
     symbol: string;
   }
