@@ -1,0 +1,14 @@
+<div class="container mt-3">
+    <div class="row">
+      <div *ngFor="let magazyn of magazyny" class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ magazyn.nazwa }}</h5>
+            <p class="card-text">Symbol: {{ magazyn.symbol }}</p>
+            <a href="#" class="btn btn-primary">Zobacz więcej</a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  
