@@ -4,7 +4,20 @@
       <div class="card-body">
         <h5 class="card-title">{{ towar.nazwa }}</h5>
         <p class="card-text">Kod: {{ towar.kod }}</p>
+        <button class="btn btn-secondary" (click)="openEditTowar(towar)">Edytuj</button>
+        <button class="btn btn-danger" (click)="deleteTowar(towar.towarId)">Usuń</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 mb-2">
+        <button class="btn btn-primary" (click)="showAddTowar()">Dodaj Towar</button>
+      </div>
+    </div>
+    <div *ngIf="showAddEditForm" class="row mb-3">
+      <div class="col">
+        <input [(ngModel)]="currentEditTowar.nazwa" placeholder="Nazwa" class="form-control">
+        <input [(ngModel)]="currentEditTowar.kod" placeholder="Kod" class="form-control">
+        <button class="btn btn-success" (click)="saveTowar()">Zapisz</button>
       </div>
     </div>
 </div>
-  
