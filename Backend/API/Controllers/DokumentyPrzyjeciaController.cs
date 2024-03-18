@@ -2,7 +2,7 @@
 using Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
-[Route("api/dokumentyprzyjecia")]
+[Route("api/dokumenty")]
 [ApiController]
 public class DokumentyPrzyjeciaController : ControllerBase
 {
