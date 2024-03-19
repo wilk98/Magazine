@@ -31,6 +31,11 @@ public class DokumentyPrzyjeciaController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<DokumentPrzyjeciaDto>> Create([FromBody] DokumentPrzyjeciaCreateDto dokumentCreateDto)
     {
+        if (dokumentCreateDto.PozycjeTowaru == null || !dokumentCreateDto.PozycjeTowaru.Any())
+        {
+            return BadRequest("Dokument musi zawierać przynajmniej jedną pozycję towaru.");
+        }
+
         var createdDokumentDto = await _dokumentPrzyjeciaService.AddAsync(dokumentCreateDto);
         return CreatedAtAction(nameof(Get), new { id = createdDokumentDto.DokumentPrzyjeciaId }, createdDokumentDto);
     }
