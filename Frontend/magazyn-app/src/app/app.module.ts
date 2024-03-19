@@ -7,6 +7,8 @@ import { TowaryComponent } from './components/towary/towary.component';
 import { DostawcyComponent } from './components/dostawcy/dostawcy.component';
 import { EtykietyComponent } from './components/etykiety/etykiety.component';
 import { DokumentyComponent } from './components/dokumenty/dokumenty.component';
+import { LoginComponent } from './components/logowanie/login.component';
+import { RegisterComponent } from './components/rejestracja/register.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 import { FormsModule} from '@angular/forms';
@@ -19,6 +21,8 @@ import { FormsModule} from '@angular/forms';
     DostawcyComponent,
     EtykietyComponent,
     DokumentyComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
