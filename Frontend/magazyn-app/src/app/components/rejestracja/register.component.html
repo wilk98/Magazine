@@ -1,0 +1,10 @@
+<div *ngIf="message" class="alert alert-warning">{{ message }}</div>
+
+<div class="register-container">
+    <h2>Rejestracja</h2>
+    <form (submit)="onRegister()">
+      <input type="email" [(ngModel)]="registerModel.email" name="email" placeholder="Email" required>
+      <input type="password" [(ngModel)]="registerModel.password" name="password" placeholder="Hasło" required>
+      <button type="submit">Zarejestruj</button>
+    </form>
+  </div>
