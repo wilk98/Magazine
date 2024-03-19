@@ -1,0 +1,10 @@
+<div *ngIf="message" class="alert alert-warning">{{ message }}</div>
+
+<div class="login-container">
+    <h2>Logowanie</h2>
+    <form (submit)="onLogin()">
+      <input type="email" [(ngModel)]="loginModel.email" name="email" placeholder="Email" required>
+      <input type="password" [(ngModel)]="loginModel.password" name="password" placeholder="Hasło" required>
+      <button type="submit">Zaloguj się</button>
+    </form>
+</div>
